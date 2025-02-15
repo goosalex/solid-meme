@@ -136,7 +136,7 @@ int main(void)
 	}
 
 	lv_label_set_text(hello_world_label, "Hello world!");
-	lv_obj_align(hello_world_label, LV_ALIGN_CENTER, 0, 0);
+	lv_obj_align(hello_world_label, LV_ALIGN_TOP_MID/*LV_ALIGN_CENTER*/, 0, 0);
 
 	count_label = lv_label_create(lv_scr_act());
 	lv_obj_align(count_label, LV_ALIGN_BOTTOM_MID, 0, 0);
