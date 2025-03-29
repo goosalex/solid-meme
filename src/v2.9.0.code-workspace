@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../../ncs/v2.9.0"
+		},
+		{
+			"name": "sample1",
+			"path": "../../sample1"
+		},
+		{
+			"name": "lvgl",
+			"path": ".."
+		}
+	],
+	"settings": {}
+}

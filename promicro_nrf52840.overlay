@@ -17,6 +17,10 @@
     };
 
 
+
+    zephyr,user {
+        P0.31-gpios = <&gpio0 31 GPIO_OPEN_DRAIN>;
+    };
 };
 
 
@@ -53,5 +57,21 @@
 &i2c0_sleep {
     group1 {
         psels = <NRF_PSEL(TWIM_SDA, 0, 29)>, <NRF_PSEL(TWIM_SCL, 0, 2)>;
+    };
+};
+
+&spi1_default {
+    group1 {
+        psels = <NRF_PSEL(SPIM_MOSI, 0, 24)>,
+                <NRF_PSEL(SPIM_MISO, 1, 0)>,
+                <NRF_PSEL(SPIM_SCK, 0, 22)>;
+    };
+};
+
+&spi1_sleep {
+    group1 {
+        psels = <NRF_PSEL(SPIM_SCK, 0, 22)>,
+                <NRF_PSEL(SPIM_MOSI, 0, 24)>,
+                <NRF_PSEL(SPIM_MISO, 1, 0)>;
     };
 };

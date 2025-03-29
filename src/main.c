@@ -61,6 +61,8 @@ int main(void)
 	lv_obj_t *hello_world_label;
 	lv_obj_t *count_label;
 
+	gpio_pin_set_raw(0, 31, GPIO_INT_LOW_0);
+
 	display_dev = DEVICE_DT_GET(DT_CHOSEN(zephyr_display));
 	if (!device_is_ready(display_dev)) {
 		LOG_ERR("Device not ready, aborting test");
