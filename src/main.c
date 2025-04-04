@@ -14,6 +14,8 @@
 #include <zephyr/kernel.h>
 #include <lvgl_input_device.h>
 
+
+
 #define LOG_LEVEL CONFIG_LOG_DEFAULT_LEVEL
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(app);
@@ -61,8 +63,10 @@ int main(void)
 	lv_obj_t *hello_world_label;
 	lv_obj_t *count_label;
 
-	gpio_pin_set_raw(0, 31, GPIO_INT_LOW_0);
+	//gpio_pin_set_raw(0, 31, GPIO_INT_LOW_0);
 
+	lv_init();
+	//k_sleep(K_MSEC(100));
 	display_dev = DEVICE_DT_GET(DT_CHOSEN(zephyr_display));
 	if (!device_is_ready(display_dev)) {
 		LOG_ERR("Device not ready, aborting test");
@@ -137,22 +141,26 @@ int main(void)
 		hello_world_label = lv_label_create(lv_scr_act());
 	}
 
-	lv_label_set_text(hello_world_label, "Hello world!");
-	lv_obj_align(hello_world_label, LV_ALIGN_TOP_MID/*LV_ALIGN_CENTER*/, 0, 0);
-
+	
+	lv_label_set_text(hello_world_label, "Hella world!");
+	lv_obj_set_style_text_font(hello_world_label, &lv_font_unscii_8, 0);
+	int32_t h = lv_obj_get_height(hello_world_label);
+	lv_obj_align(hello_world_label, LV_ALIGN_TOP_LEFT, 0, 0);
+	
 	count_label = lv_label_create(lv_scr_act());
-	lv_obj_align(count_label, LV_ALIGN_BOTTOM_MID, 0, 0);
+	lv_obj_align(count_label, LV_ALIGN_BOTTOM_RIGHT, 0, 0);
+	lv_task_handler();
 
 	lv_task_handler();
 	display_blanking_off(display_dev);
 
 	while (1) {
 		if ((count % 100) == 0U) {
-			sprintf(count_str, "%d", count/100U);
+			sprintf(count_str, "%d", h ); // count/100U);
 			lv_label_set_text(count_label, count_str);
 		}
 		lv_task_handler();
 		++count;
 		k_sleep(K_MSEC(10));
-	}
+	} 
 }

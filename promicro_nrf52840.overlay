@@ -19,7 +19,7 @@
 
 
     zephyr,user {
-        P0.31-gpios = <&gpio0 31 GPIO_OPEN_DRAIN>;
+
     };
 };
 
